@@ -100,7 +100,15 @@ const sanitizeMessage = (message: string) => message.trim().replace(/[\n\r]/g, '
 
 const deduplicateMessages = (array: string[]) => Array.from(new Set(array));
 
-const getPrompt = (locale: string, diff: string) => `Write a git commit message in present tense for the following diff without prefacing it with anything. Do not be needlessly verbose and make sure the answer is concise and to the point. The response must be in the language ${locale}:\n${diff}`;
+
+const getPrompt = (locale: string, diff: string) => `You are a helpful assistant which helps to write commit messages based on the given diff.'
+Follow the following git commit message convention:
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+`;
 
 export const generateCommitMessage = async (
 	apiKey: string,
